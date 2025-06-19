@@ -105,9 +105,9 @@
 
   // Configure headings.
   // set heading(numbering: "I.A.a)")
-  show heading: it => locate(loc => {
+  show heading: it => context {
     // Find out the final number of the heading counter.
-    let levels = counter(heading).at(loc)
+    let levels = counter(heading).at(here())
     let deepest = if levels != () {
       levels.last()
     } else {
@@ -149,7 +149,7 @@
       }
       _#(it.body):_
     ]
-  })
+  }
 
   // Display the paper's title.
   v(3pt, weak: true)
@@ -224,7 +224,8 @@
 		..acroArr,
 	)
 
-  outline(target: figure, title: "List of figures and tables", fill: repeat(" . "))
+  outline(target: figure, title: "List of figures and tables")
+  set outline.entry(fill: repeat(" . "))
 
   // Display bibliography.
   if bibliography != none {
